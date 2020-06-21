@@ -1,7 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
-dotenv.config();
 import {ADD_POSTS} from "../reducers/index";
+dotenv.config();
 const url = process.env.BACKEND_URL || "http://localhost:1337";
 
 export const getPosts = () => dispatch => {

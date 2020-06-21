@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config();
 import {ADD_EDUCATION, ADD_WORK} from "../reducers";
 
 import axios from "axios";
+dotenv.config();
 const url = process.env.BACKEND_URL || "http://localhost:1337";
 
 export const getWork = () => dispatch => {
