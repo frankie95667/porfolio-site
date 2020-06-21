@@ -6,8 +6,6 @@ import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import dotenv from "dotenv";
-dotenv.config();
 
 const store = configureStore();
 

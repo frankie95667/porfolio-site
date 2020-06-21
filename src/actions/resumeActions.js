@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import {ADD_EDUCATION, ADD_WORK} from "../reducers";
 
 import axios from "axios";

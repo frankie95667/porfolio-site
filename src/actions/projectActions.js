@@ -1,4 +1,6 @@
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 import {ADD_PROJECTS} from "../reducers/index";
 const url = process.env.BACKEND_URL || "http://localhost:1337";
 
