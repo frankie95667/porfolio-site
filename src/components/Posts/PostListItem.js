@@ -11,7 +11,7 @@ const PostListItem = ({post}) => {
     })
     return (
         <List>
-            <Img src={`${url}${post.featured_image.format.small.url}`} />
+            <Img src={`${url}${post.featured_image.formats.medium.url}`} />
             <p>{moment(post.created_at).format('MMMM Do YYYY')}</p>
             <Link to={`/blog/${post.id}`}><Title>{post.Title}</Title></Link>
             <p>{post.Snippet}</p>
