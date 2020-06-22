@@ -94,7 +94,7 @@ const Resume = (props) => {
 };
 
 const StyledPaper = styled(Paper)`
-  padding: 10px;
+  padding: 15px;
 `;
 
 const Container = styled.div`
