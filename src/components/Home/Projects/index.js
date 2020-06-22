@@ -7,6 +7,8 @@ import {} from "../../../actions/index";
 
 import BlockType from "../../BlockType";
 
+const url = process.env.REACT_APP_BACKEND_URL || 'localhost';
+
 const Index = (props) => {
     useEffect(() => {
         console.log(props.projects)
@@ -17,7 +19,7 @@ const Index = (props) => {
             {props.projects.map(project => {
                 return (
                     <ProjectWrapper key={project.id}>
-                        <Img bgUrl={`http://localhost:1337${project.main_image.url}`} />
+                        <Img bgUrl={`${url}${project.main_image.formats.small.url}`} />
                         <h3>{project.name}</h3>
                         <BlockType type={project.description.blocks[0].type} data={project.description.blocks[0].data} />
                         <ChipsContainer>
