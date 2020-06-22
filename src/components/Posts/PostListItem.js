@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import moment from 'moment';
 import styled from "styled-components";
 
+const url = process.env.REACT_APP_BACKEND_URL || "http://localhost:1337"
+
 const PostListItem = ({post}) => {
     useEffect(() => {
         console.log(post.featured_image);
     })
     return (
         <List>
-            <Img src={`http://localhost:1337${post.featured_image.url}`} />
+            <Img src={`${url}${post.featured_image.format.small.url}`} />
             <p>{moment(post.created_at).format('MMMM Do YYYY')}</p>
             <Link to={`/blog/${post.id}`}><Title>{post.Title}</Title></Link>
             <p>{post.Snippet}</p>
