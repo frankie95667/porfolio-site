@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogoImg from "../../images/AK-profile-square-sm.jpg";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 export default () => {
   return (
@@ -15,10 +15,14 @@ export default () => {
           </LogoText>
         </Brand>
         <Links>
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
           <NavLink to="/resume">Résumé</NavLink>
           <NavLink to="/blog">Blog</NavLink>
-          <Email href="mailto:anthonyk2020@gmail.com">anthonyk2020@gmail.com</Email>
+          <Email href="mailto:anthonyk2020@gmail.com">
+            anthonyk2020@gmail.com
+          </Email>
         </Links>
       </Nav>
     </NavWrapper>
@@ -51,6 +55,7 @@ const Links = styled.div`
   order: 0;
   margin: 0;
   display: flex;
+  
   a {
     text-decoration: none;
     font-size: 1rem;
@@ -58,7 +63,7 @@ const Links = styled.div`
     padding: 0.5rem 1.1rem;
     display: flex;
     align-items: center;
-    transition: color .5s;
+    transition: color 0.5s;
   }
 
   a:hover {
@@ -74,6 +79,10 @@ const Email = styled.a`
   text-decoration: none;
   font-size: 1rem;
   color: #c9c9c9;
+
+  @media (max-width: 550px) {
+    display: none !important;
+  }
 `;
 
 const LogoImage = styled.img`
@@ -94,4 +103,8 @@ const Profession = styled.div`
 
 const LogoText = styled.div`
   margin-left: 15px;
+
+  @media (max-width: 780px) {
+    display: none;
+  }
 `;

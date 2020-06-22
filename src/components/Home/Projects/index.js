@@ -45,21 +45,25 @@ const Index = (props) => {
 const ProjectsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 `;
 
 const ProjectWrapper = styled.div`
-    width: 50%;
-    padding: 2rem;
-
+    width: 49%;
+    
     p {
         margin-bottom: 10px;
+    }
+
+    @media (max-width: 780px){
+        width: 100%;
+        margin-bottom: 2rem;
     }
 `;
 
 const Img = styled.div`
     width: 100%;
-    height: 300px;
+    padding-bottom: 56%;
     margin-bottom: 10px;
     background-size: cover;
     background-image: url(${props => props.bgUrl});

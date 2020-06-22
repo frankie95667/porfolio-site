@@ -29,7 +29,7 @@ const Post = (props) => {
 const PostWrapper = styled.article`
   max-width: 800px;
   margin: 0 auto;
-  padding-top: 3.25rem;
+  padding: 3.25rem 1.2rem 0 1.2rem;
 `;
 
 const BlockWrapper = styled.div`
