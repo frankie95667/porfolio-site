@@ -19,7 +19,7 @@ const Index = (props) => {
             {props.projects.map(project => {
                 return (
                     <ProjectWrapper key={project.id}>
-                        <Img bgUrl={`${url}${project.main_image.formats.small.url}`} />
+                        <Img bgUrl={`${project.main_image.formats.small.url}`} />
                         <h3>{project.name}</h3>
                         <BlockType type={project.description.blocks[0].type} data={project.description.blocks[0].data} />
                         <ChipsContainer>
