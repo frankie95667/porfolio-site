@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import { Chip } from "@material-ui/core";
 import { GitHub, Link } from "@material-ui/icons";
 import styled from "styled-components";
@@ -30,7 +29,10 @@ const Index = (props) => {
   useEffect(() => {
     console.log(props.projects);
   }, [props.projects]);
-  if (data && data.projects) {
+
+  if (loading) return "Loading...";
+  if (error) return `Error ${error.message}`;
+  if(data && data.projects) {
       const projects = data.projects.map(project => {
           return {
               ...project,
@@ -163,10 +165,4 @@ const LinksContainer = styled.div`
   }
 `;
 
-const mapStateToProps = ({ projects }) => {
-  return {
-    projects,
-  };
-};
-
-export default connect(mapStateToProps, {})(Index);
+export default Index;

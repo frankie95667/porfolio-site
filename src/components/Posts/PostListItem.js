@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import moment from 'moment';
 import styled from "styled-components";
 
-const url = process.env.REACT_APP_BACKEND_URL || "http://localhost:1337"
-
 const PostListItem = ({post}) => {
-    useEffect(() => {
-        console.log(post.featured_image);
-    })
     return (
         <List>
             <Img src={`${post.featured_image.formats.medium.url}`} />

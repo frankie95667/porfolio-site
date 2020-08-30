@@ -11,7 +11,6 @@ import {
 import { Work, School } from "@material-ui/icons";
 import { Typography, Paper } from "@material-ui/core";
 import { gql, useQuery } from '@apollo/client';
-import { connect } from "react-redux";
 
 import BlockType from "../components/BlockType";
 
@@ -40,7 +39,8 @@ const GET_EDUCATIONS = gql`
 
 const Resume = (props) => {
   const {loading, error, data} = useQuery(GET_EDUCATIONS)
-  
+  if (loading) return "Loading...";
+  if (error) return `Error ${error.message}`;
   if (data && data.educations){
     const educations = data.educations.map(education => {
       return {
@@ -174,11 +174,4 @@ const TimelineItemSection = styled(TimelineItem)`
   }
 `;
 
-const mapStateToProps = ({ resume }) => {
-  return {
-    educations: resume.education,
-    works: resume.work,
-  };
-};
-
-export default connect(mapStateToProps, {})(Resume);
+export default Resume;

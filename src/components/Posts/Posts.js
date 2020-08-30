@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PostListItem from "./PostListItem";
-import { connect } from "react-redux";
-import styled from 'styled-components';
-import {gql, useQuery} from '@apollo/client';
+import styled from "styled-components";
+import { gql, useQuery } from "@apollo/client";
 
 const GET_POSTS = gql`
   query getPosts($published: Boolean!) {
-    posts(where: {published: $published}) {
+    posts(where: { published: $published }) {
       id
       Title
       Snippet
@@ -20,34 +19,29 @@ const GET_POSTS = gql`
   }
 `;
 
-const Posts = (props) => {
+const Posts = () => {
   const { loading, error, data } = useQuery(GET_POSTS, {
-    variables: { published: true}
+    variables: { published: true },
   });
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`
-  return (
-    <PostListWrapper>
-      <ul>
-        {props.posts &&
-          data.posts.map((post) => {
-            return <PostListItem key={post.id} post={post} />;
-          })}
-      </ul>
-    </PostListWrapper>
-  );
+  if (loading) return "Loading...";
+  else if (error) return `Error! ${error.message}`;
+  else {
+    return (
+      <PostListWrapper>
+        <ul>
+          {data.posts.map((post) => {
+              return <PostListItem key={post.id} post={post} />;
+            })}
+        </ul>
+      </PostListWrapper>
+    );
+  }
 };
 
 const PostListWrapper = styled.div`
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
-const mapStateToProps = ({ posts }) => {
-  return {
-    posts,
-  };
-};
-
-export default connect(mapStateToProps, {})(Posts);
+export default Posts;

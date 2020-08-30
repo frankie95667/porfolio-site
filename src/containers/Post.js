@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react"
 import { useParams, Redirect } from "react-router-dom";
 import {gql, useQuery} from '@apollo/client';
 import Post from "../components/Posts/Post";
@@ -61,10 +60,4 @@ const PostContainer = (props) => {
   return renderPost();
 };
 
-const mapStateToProps = ({ posts }) => {
-  return {
-    posts,
-  };
-};
-
-export default connect(mapStateToProps, {})(PostContainer);
+export default PostContainer;
