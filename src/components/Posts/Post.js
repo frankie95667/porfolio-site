@@ -4,12 +4,11 @@ import styled from "styled-components";
 import BlockType from "../BlockType";
 
 const Post = (props) => {
-  
   return (
     <PostWrapper>
       <Title>{props.post.Title}</Title>
       <Date>
-        <time datetime={props.post.created_at}>
+        <time dateTime={props.post.created_at}>
           {moment(props.post.created_at).format("MMMM do YYYY")}
         </time>
       </Date>

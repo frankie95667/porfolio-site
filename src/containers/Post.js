@@ -1,28 +1,59 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
+import {gql, useQuery} from '@apollo/client';
 import Post from "../components/Posts/Post";
 
+const GET_POST = gql`
+  query getPost($id: ID!) {
+    post(id: $id) {
+      id
+      Title
+      Snippet
+      featured_image {
+        id
+        url
+        formats
+      }
+      body 
+    }
+  }
+`;
+
 const PostContainer = (props) => {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const params = useParams();
+  const id = String(params.id)
+  const {loading, error, data} = useQuery(GET_POST, { 
+    variables: { id }
+  });
 
   useEffect(() => {
-    if (props.posts.length) {
-      setPost(props.posts.find((post) => post.id === Number(id)));
+    if(error){
+      console.error(error.message);
     }
-  }, [props.posts, id]);
+
+    if(data){
+      console.log(data);
+    }
+  }, [loading, data, error])
 
   const renderPost = () => {
-    if (post) {
+    if (data && data.post) {
+      const parsed_data = {
+        post: {
+          ...data.post,
+          body: JSON.parse(data.post.body)
+        }
+      }
       return (
         <div>
-          <Post post={post} />
+          <Post post={parsed_data.post} />
         </div>
       );
-    } else if (post === null) {
-      return <div></div>;
-    } else {
+    } else if(loading) {
+      return <div>Loading...</div>;
+    } 
+    else {
         return <Redirect to="/not-found" />
     }
   };

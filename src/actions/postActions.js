@@ -1,5 +1,6 @@
 import axios from "axios";
 import dotenv from "dotenv";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import {ADD_POSTS} from "../reducers/index";
 dotenv.config();
 const url = process.env.REACT_APP_BACKEND_URL || "http://localhost:1337";
