@@ -25,7 +25,7 @@ const GET_EDUCATIONS = gql`
       school_name
       present
     }
-    workExperiences {
+    workExperiences(sort:"present:desc, start_date:desc") {
       id
       start_date
       end_date
@@ -41,7 +41,7 @@ const Resume = (props) => {
   const {loading, error, data} = useQuery(GET_EDUCATIONS)
   if (loading) return "Loading...";
   if (error) return `Error ${error.message}`;
-  if (data && data.educations){
+  if (data && data.educations && data.workExperiences){
     const educations = data.educations.map(education => {
       return {
         ...education,
@@ -85,7 +85,7 @@ const Resume = (props) => {
                         {`${work.start_date} - ${work.end_date ? work.end_date : "Present"}`}
                       </Typography>
                       <Typography variant="body1">{work.title}</Typography>
-                      {work.description.blocks.map((block, idx) => (
+                      {work.description && work.description.blocks.map((block, idx) => (
                         <BlockType
                           key={idx}
                           type={block.type}
@@ -121,7 +121,7 @@ const Resume = (props) => {
                       {`${education.start_date} - ${education.end_date ? education.end_date : "Present"}`}
                     </Typography>
                     <Typography variant="body1">{education.major}</Typography>
-                    {education.description.blocks.map((block, idx) => (
+                    {education.description && education.description.blocks.map((block, idx) => (
                       <BlockType key={idx} type={block.type} data={block.data} />
                     ))}
                   </StyledPaper>
