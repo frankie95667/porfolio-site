@@ -5,4 +5,4 @@ workflows:
   node-tests:
     jobs:
       - node/test
-        install-yarn: true
+        pkg-manager: yarn
